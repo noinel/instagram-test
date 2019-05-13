@@ -1,6 +1,7 @@
 package com.white.isntagram.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,29 +13,43 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Images {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(length = 102400000)
-	private byte[]file;
+	
 	private String location;
 	private String caption;
+	private String mimeType;
+	private String fileName;
+	private String filePath;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="userId")
 	private Users user;
 	
-	@OneToMany
-	@JoinColumn(name="image_id")
-	private List<Tags> tags;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "image")
+	@Builder.Default private List<Tags> tags = new ArrayList<Tags>();
 	
-	
-	private Timestamp create_date;
-	private Timestamp update_date;
-
+	@CreationTimestamp
+	private LocalDate createDate;
+	@CreationTimestamp
+	private LocalDate updateDate;
 }

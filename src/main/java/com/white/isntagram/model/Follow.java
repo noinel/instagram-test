@@ -1,6 +1,6 @@
 package com.white.isntagram.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
@@ -18,12 +20,14 @@ public class Follow {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
-	@JoinColumn(name="from_user")
-	private Users from_user;
+	@JoinColumn(name="fromUser")
+	private Users fromUser;
 	@ManyToOne
-	@JoinColumn(name="to_user")
-	private Users to_user;
+	@JoinColumn(name="toUser")
+	private Users toUser;
 	
-	private Timestamp create_date;
-	private Timestamp update_date;
+	@CreationTimestamp
+	private LocalDate createDate;
+	@CreationTimestamp
+	private LocalDate updateDate;
 }
