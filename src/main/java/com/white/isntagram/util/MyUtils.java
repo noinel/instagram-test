@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.white.isntagram.model.Users;
 
 public class MyUtils {
@@ -11,14 +14,18 @@ public class MyUtils {
 		return "D://springinsta//instagram//src//main//resources//static//image//";
 		
 	}
+	
+	
 	public static Users getUser() {
+	
 		Users user = Users.builder()
 				.bio("white의 페이지")
 				.email("cos@white.com")
 				.gender("남")
 				.name("최재원")
 				.phone("01022225555")
-				.username("cos")
+				.username("cosa")
+				.password("1123")
 				.website("blog.naver.com")
 				.createDate(LocalDate.now())
 				.updateDate(LocalDate.now())

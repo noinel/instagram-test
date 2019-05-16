@@ -15,13 +15,21 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+
+/*
+ * ManyToOne은 Many쪽에 FK가 들어간다
+ * ManyToOne 기본 fetch전략이 EAGER = 바로들고옴.
+ * OneToMany는 기본 fetch전략이 LAZY = 호출할 때 가져옴0
+ */
+
+
 
 @Data
 @Entity

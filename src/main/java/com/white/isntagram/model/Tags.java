@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -33,13 +32,13 @@ public class Tags {
 	
 	private String name;
 	
-	@JsonIgnoreProperties({"username","name","website","bio","gedder","phone","createDate","updateDate"})
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"username","name","email","website","bio","gender","phone","createDate","updateDate"})
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
 	private Users user;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "imageId")
 	@JsonBackReference
 	private Images image;

@@ -14,14 +14,21 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
 #     PhysicalNamingStrategyStandardImpl 변수명을 대소문자 그대로 만들어줌
 #     SpringPhysicalNamingStrategy 변수명을 create_date 형식으로 만들어줌     
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         
     show-sql: true
-    
+    properties:
+      hibernate.format_sql: true
+      hibernate.enable_lazy_load_no_trans: true
+      
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+      
     
   mvc:
     view:
